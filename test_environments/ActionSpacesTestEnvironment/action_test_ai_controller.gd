@@ -1,7 +1,17 @@
 extends AIController2D
 
+# Used to get varied action values
+# from a deterministic policy if true
+var use_random_observations : bool = false
+
+func sample_observation_value() -> float:
+	if (use_random_observations):
+		return randf_range(-1, 1)
+	else:
+		return 1.0
+
 func get_obs() -> Dictionary:
-	return {"obs":[]}
+	return {"obs":[sample_observation_value()]}
 
 func get_reward() -> float:	
 	return 0.0
